@@ -22,6 +22,7 @@ Input utama: data/raw/automobileEDA_dirty_training.csv
 ### Permasalahan dan Metode Penanganan
 
 | Permasalahan | Kolom terkait | Metode | Alasan |
+|---|---|---|---|
 | Missing values | transaction_date, make, num-of-doors, stroke, horsepower, price, horsepower-binned | Menghapus baris yang memiliki nilai kosong menggunakan dropna() | Mempertahankan baris dengan data lengkap tanpa mengisi nilai berdasarkan perkiraan |
 | Baris duplikat | Seluruh kolom sebagai dasar perbandingan | Menghapus duplikat menggunakan drop_duplicates() dan mempertahankan kemunculan pertama | Menghindari penghitungan data yang sama berulang kali |
 | Spasi berlebih | make | Menghapus spasi di awal dan akhir teks menggunakan str.strip() | Menyeragamkan penulisan kategori |
@@ -37,6 +38,7 @@ Nilai `AWD` diubah menjadi `awd`, tetapi tidak digabung dengan `4wd` karena belu
 Konversi kolom `transaction_date` menggunakan empat format berikut:
 
 | Contoh nilai awal | Format pembacaan | Tanggal hasil konversi |
+|---|---|---|
 | 2025-01-01 | %Y-%m-%d | 2025-01-01 |
 | 02/01/2025 | %d/%m/%Y | 2025-01-02 |
 | 01-03-2025 | %m-%d-%Y | 2025-01-03 |
@@ -56,10 +58,13 @@ Program akan menghentikan proses apabila terdapat tanggal tidak kosong yang gaga
 6. Menghapus baris yang masih memiliki missing values.
 
 ### Hasil Cleaning
-Sebelum cleaning = 205 
-Duplikat yang dihapus = 4 
-Baris yang dihapus karena missing values setelah penghapusan duplikat = 15
-Sesudah cleaning = 186
+
+| Keterangan | Jumlah baris |
+|---|---:|
+| Sebelum cleaning | 205 |
+| Duplikat yang dihapus | 4 |
+| Baris yang dihapus karena missing values setelah penghapusan duplikat | 15 |
+| Sesudah cleaning | 186 |
 
 Total baris yang dihapus adalah 19, sekitar 9,27% dari dataset awal. Jumlah kolom tetap 30.
 
@@ -99,6 +104,7 @@ Tahap data cleaning telah selesai dan menghasilkan DataFrame berisi 186 baris da
 ### Kolom dan Metode Transformasi
 
 | Kolom asal | Metode | Kolom hasil |
+|---|---|---|
 | horsepower | Min-Max Scaling | horsepower_normalized |
 | aspiration | Encoding dua kategori | aspiration_encoded |
 
@@ -119,6 +125,7 @@ Kolom asli `horsepower` dipertahankan agar dapat dibandingkan dengan hasil norma
 Kolom `aspiration` dipilih karena memiliki dua kategori, yaitu `std` dan `turbo`. Encoding mengubah kedua kategori tersebut menjadi representasi numerik.
 
 | Nilai sebelum | Nilai sesudah |
+|---|---:|
 | std | 0 |
 | turbo | 1 |
 
@@ -129,6 +136,7 @@ Angka 0 dan 1 merupakan label kategori, bukan urutan atau peringkat. Hasil encod
 Perbandingan normalisasi berikut menunjukkan hubungan nilai awal dengan hasilnya. Contoh angka aktual akan dilengkapi berdasarkan output program.
 
 | Nilai horsepower sebelum | Nilai horsepower_normalized sesudah |
+|---|---:|
 | Nilai minimum pada data setelah cleaning | 0 |
 | Nilai maksimum pada data setelah cleaning | 1 |
 
